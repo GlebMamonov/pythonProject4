@@ -4,7 +4,7 @@ class TestCalculator(unittest.TestCase):
 
   def word_counter(file):
     text = file
-    lst_no = ['.', ',', ':', '!', '"', "'", '[', ']', '-', '—', '(', ')']
+    lst_no = ['.', ',', ':', '!', '"', "'", '[', ']', '-', '—', '(', ')', "+", '*', '=', '|', '/']
     lst = []
 
     for word in text.lower().split():
@@ -34,9 +34,13 @@ class TestCalculator(unittest.TestCase):
     self.assertEqual(TestCalculator.word_counter("gggg gg gggg gg gggg y y yy"), 'gggg')
 
   def test_two(self):
-    self.assertEqual(TestCalculator.word_counter("gggg gg gggg gg gggg y y y y"), 'y')
+    self.assertEqual(TestCalculator.word_counter("-+=_*/|"), '+=_*/')
 
   def test_three(self):
-    self.assertEqual(TestCalculator.word_counter("gg gg gg gg gg gg gggg y y y y"), 'gg')
+    self.assertEqual(TestCalculator.word_counter(""), None)
+
+  def test_four(self):
+    self.assertEqual(TestCalculator.word_counter("- = + * | / *"), None)
+
 if __name__ == "__main__":
   unittest.main()
